@@ -1,2 +1,5 @@
 # 30-Days-of-SQL
-This is a 30 days of SQL code challenge where I'll be solving a new SQL question taken from LeetCode, each day for 30 days. These challenging questions will be covering a wide range of topics which will help me to sharpen my skills.
+
+Hi there!
+
+I'm excited to announce that I'll be starting a 30-day SQL coding challenge today. During this time, I'll go deeply into the world of SQL and build up essential querying skills. This is my commitment to develop and improve my abilities and skills.
