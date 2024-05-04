@@ -1,0 +1,19 @@
+# Solution to find the IDs of the invalid tweets.
+
+DROP DATABASE IF EXISTS `Invalid_tweets`;
+CREATE DATABASE `Invalid_tweets`;
+USE `Invalid_tweets`;
+
+CREATE TABLE tweets (
+tweet_id INT PRIMARY KEY,
+content VARCHAR (50)
+);
+
+INSERT INTO tweets (tweet_id, content)
+VALUES
+(1, 'Vote for Biden'),
+(2, 'Let us make America great again!');
+
+SELECT tweet_id
+FROM tweets
+WHERE LENGTH(content) > 15;
