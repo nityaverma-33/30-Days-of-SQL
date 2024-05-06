@@ -1,0 +1,36 @@
+# Solution for reporting the product_name, year, and price for each sale_id in the Sales table.
+
+DROP DATABASE IF EXISTS `Product_sales`;
+CREATE DATABASE `Product_sales`;
+USE `Product_sales`;
+
+CREATE TABLE products (
+product_id INT PRIMARY KEY,
+product_name VARCHAR (100)
+);
+
+CREATE TABLE sales (
+sale_id INT,
+product_id INT,
+year INT,
+quantity INT, 
+price INT,
+PRIMARY KEY (sale_id, year),
+FOREIGN KEY (product_id) REFERENCES products (product_id)
+);
+
+INSERT INTO products (product_id, product_name)
+VALUES
+(100, 'Nokia'),
+(200, 'Apple'),
+(300, 'Samsung');
+
+INSERT INTO sales (sale_id, product_id, year, quantity, price)
+VALUES
+(1, 100, 2008, 10, 5000 ),
+(2, 100, 2009, 12, 5000),
+(7, 200, 2011, 15, 9000);
+
+SELECT product.product_name, sales.year, sales.price
+FROM product
+JOIN sales ON product.product_id = sales.product_id; 
