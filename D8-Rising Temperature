@@ -1,0 +1,24 @@
+# Solution to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.
+
+DROP DATABASE IF EXISTS `Rising_temperature`;
+CREATE DATABASE `Rising_temperature`;
+USE `Rising_temperature`;
+
+CREATE TABLE weather (
+id INT PRIMARY KEY,
+recordDate DATE,
+temperature INT
+);
+
+INSERT INTO weather (id, recordDate, temperature)
+VALUES
+(1, '2015-01-01', 10),
+(2, '2015-01-02', 25),
+(3, '2015-01-03', 20),
+(4, '2015-01-04', 30);
+
+SELECT w1.id 
+FROM weather AS w1
+INNER JOIN weather AS w2
+ON datediff(w1.recordDate,w2.recordDate) = 1
+WHERE w1.temperature > w2.temperature;
