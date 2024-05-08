@@ -1,0 +1,26 @@
+# Solution to to report the movies with an odd-numbered ID and a description that is not "boring".
+
+DROP DATABASE IF EXISTS `Movie_rating`;
+CREATE DATABASE `Movie_rating`;
+USE `Movie_rating`;
+
+CREATE TABLE cinema (
+id INT PRIMARY KEY,
+movie VARCHAR (150),
+description VARCHAR (200),
+rating FLOAT
+);
+
+INSERT INTO cinema (id, movie, description, rating)
+VALUES
+(1, 'War', 'Great 3D', 8.9),
+(2, 'Science', 'Fiction', 8.5),
+(3, 'Irish', 'Boring', 6.2),
+(4, 'Ice song', 'Fantacy', 8.6),
+(5, 'House card', 'Interesting', 9.1);
+
+
+SELECT *
+FROM cinema
+WHERE id % 2 != 0 and description != 'Boring'
+ORDER BY rating DESC;
