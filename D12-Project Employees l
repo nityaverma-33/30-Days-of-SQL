@@ -1,0 +1,39 @@
+# SQL Query that reports the average experience years of all the employees for each project, rounded to 2 digits.
+
+DROP DATABASE IF EXISTS `Project_Employees`;
+CREATE DATABASE `Project_Employees`;
+USE `Project_Employees`;
+
+CREATE TABLE employee (
+employee_id INT PRIMARY KEY,
+name VARCHAR(70),
+experience_years INT NOT NULL
+);
+
+CREATE TABLE project (
+project_id INT,
+employee_id INT,
+PRIMARY KEY (project_id, employee_id),
+FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);
+
+INSERT INTO employee (employee_id, name, experience_years)
+VALUES
+(1, 'Khaled', 3),
+(2, 'Ali', 2),
+(3, 'John', 1),
+(4, 'Doe', 2);
+
+INSERT INTO project (project_id, employee_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 1),
+(2, 4);
+
+SELECT P.project_id, ROUND(AVG(E.experience_years), 2) AS average_years
+FROM project AS P
+JOIN employee AS E
+ON P.employee_id = E.employee_id
+GROUP BY P.project_id;
