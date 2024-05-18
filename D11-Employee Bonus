@@ -1,0 +1,36 @@
+# Solution to report the name and bonus amount of each employee with a bonus less than 1000.
+
+DROP DATABASE IF EXISTS `Employee_Bonus`;
+CREATE DATABASE `Employee_Bonus`;
+USE `Employee_Bonus`;
+
+CREATE TABLE employee (
+empID INT PRIMARY KEY,
+name VARCHAR(100),
+supervisor INT,
+salary INT
+);
+
+CREATE TABLE bonus (
+empID INT,
+bonus INT,
+FOREIGN KEY (empID) REFERENCES employee(empID)
+);
+
+INSERT INTO employee (empID, name, supervisor, salary)
+VALUES
+(3, 'Brad', null, 4000),
+(1, 'John', 3, 1000),
+(2, 'Dan', 3, 2000),
+(4, 'Thomas', 3, 4000);
+
+INSERT INTO bonus (empID, bonus)
+VALUES
+(2, 500 ),
+(4, 2000 );
+
+SELECT E.name, B.bonus
+FROM employee AS E 
+LEFT JOIN bonus AS B 
+ON E.empid = B.empid
+WHERE B.bonus < 1000 OR bonus is null;
