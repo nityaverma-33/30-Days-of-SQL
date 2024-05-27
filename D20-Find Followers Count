@@ -1,0 +1,23 @@
+# Solution that will, return the number of followers, for each user and return the result table ordered by user_id in ascending order.
+
+DROP DATABASE IF EXISTS `Followers_count`;
+CREATE DATABASE `Followers_count`;
+USE `Followers_count`;
+
+CREATE TABLE followers (
+user_id INT,
+follower_id INT,
+PRIMARY KEY(user_id, follower_id)
+);
+
+INSERT INTO followers (user_id, follower_id)
+VALUES
+(0, 1),
+(1, 0),
+(2, 0),
+(2, 1);
+
+SELECT user_id, count(follower_id) AS followers_count
+FROM followers
+GROUP BY user_id
+ORDER BY user_id;
