@@ -1,0 +1,23 @@
+# Solution to find the patient_id, patient_name, and conditions of the patients who have Type I Diabetes. Type I Diabetes always starts with DIAB1 prefix.
+
+DROP DATABASE IF EXISTS `Patients_condition`;
+CREATE DATABASE `Patients_condition`;
+USE `Patients_condition`;
+
+CREATE TABLE patients (
+patient_id INT PRIMARY KEY,
+patient_name VARCHAR(100),
+conditions VARCHAR(70)
+);
+
+INSERT INTO patients (patient_id, patient_name, conditions)
+VALUES
+(1, "Daniel", "YFEV COUGH"),
+(2, "Alice", "      "),
+(3, "Bob", "DIAB100 MYOP"),
+(4, "George", "ACNE DIAB100"),
+(5, "Alain", "DIAB201");
+
+SELECT patient_id, patient_name, conditions
+FROM patients
+WHERE conditions LIKE "DIAB1%" OR conditions LIKE "% DIAB1%";
