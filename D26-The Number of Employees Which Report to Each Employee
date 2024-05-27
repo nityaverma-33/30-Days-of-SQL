@@ -1,0 +1,28 @@
+/* Solution to report the ids and the names of all managers, the number of employees who report directly to them, and the average age of the reports rounded to the nearest 
+integer. Return the result table ordered by employee_id.
+*/
+
+DROP DATABASE IF EXISTS `Employee_Reporting`;
+CREATE DATABASE `Employee_Reporting`;
+USE `Employee_Reporting`;
+
+CREATE TABLE employees (
+employee_id  INT PRIMARY KEY,
+name VARCHAR(100),
+reports_to INT,
+age INT
+);
+
+INSERT INTO employees (employee_id, name, reports_to, age)
+VALUES
+(9, 'Hercy', null, 43),
+(6, 'Alice', 9, 41), 
+(4, 'Bob', 9, 36),
+(2, 'Winston', null, 37);
+
+SELECT e1.employee_id, e1.name, COUNT(e2.employee_id) AS reports_count, ROUND(AVG(e2.age)) AS average_age
+FROM employees e1, employees e2
+WHERE e1.employee_id = e2.reports_to
+GROUP BY 1
+HAVING reports_count > 0
+ORDER BY 1;
