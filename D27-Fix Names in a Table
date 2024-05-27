@@ -1,0 +1,19 @@
+# Solution to fix the names so that only the first character is uppercase and the rest are lowercase and return the result table ordered by user_id.
+
+DROP DATABASE IF EXISTS `Fix_names`;
+CREATE DATABASE `Fix_names`;
+USE `Fix_names`;
+
+CREATE TABLE users (
+user_id INT PRIMARY KEY,
+name VARCHAR(100)
+);
+
+INSERT INTO users (user_id, name)
+VALUES
+(1, "aLice"),
+(2, "bOB");
+
+SELECT user_id, CONCAT(UPPER(LEFT(name,1)), LOWER(SUBSTRING(name, 2))) AS name
+FROM Users
+ORDER BY user_id;
