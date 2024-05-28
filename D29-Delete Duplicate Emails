@@ -1,0 +1,20 @@
+# Solution to delete all duplicate emails, keeping only one unique email with the smallest id.
+
+DROP DATABASE IF EXISTS `Duplicate_Emails`;
+CREATE DATABASE `Duplicate_Emails`;
+USE `Duplicate_Emails`;
+
+CREATE TABLE person (
+id INT PRIMARY KEY,
+email VARCHAR(100)
+);
+
+INSERT INTO person (id, email)
+VALUES
+(1, 'john@example.com'),
+(2, 'bob@example.com'),
+(3, 'john@example.com');
+
+DELETE p2
+FROM person AS p1, person AS p2
+WHERE p1.email = p2.email AND p2.id > p1.id;
