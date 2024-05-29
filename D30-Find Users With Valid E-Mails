@@ -1,0 +1,25 @@
+# Solution to find the users who have valid emails.
+
+DROP DATABASE IF EXISTS `Valid_Emails`;
+CREATE DATABASE `Valid_Emails`;
+USE `Valid_Emails`;
+
+CREATE TABLE users (
+user_id INT PRIMARY KEY,
+name VARCHAR(100),
+mail VARCHAR(100)
+);
+
+INSERT INTO users (user_id, name, mail)
+VALUES
+(1, "Winston", "winston@leetcode.com"),
+(2, "Jonathan", "jonathanisgreat"),
+(3, "Annabelle", "bella-@leetcode.com"),
+(4, "Sally", "sally.come@leetcode.com"),
+(5, "Marwan", "quarz#2020@leetcode.com"),
+(6, "David", "david69@gmail.com"),
+(7, "Shapiro", ".shapo@leetcode.com");
+
+SELECT * 
+FROM Users 
+WHERE RIGHT(mail, 13) LIKE "@leetcode.com" AND LEFT(mail, LENGTH(mail)-13) RLIKE '^[A-Za-z][A-Za-z0-9._-]*$';
